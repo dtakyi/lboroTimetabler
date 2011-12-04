@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript" charset="utf-8"></script>
+	<title>Loughborough University - Timetabler</title>
+	<link rel="stylesheet" type="text/css" href="type.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" type="text/css" href="formatting.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>	
+	<script type="text/javascript" src="http://growmedia.ca/_scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="resize.js"></script>
+	<script>
+	 function getBuildingData(){
+		document.getElementById("whatbuilding").innerHTML ='<p>Below are the currently booked rooms for - '+document.getElementById("building").options[document.getElementById("building").selectedIndex].text+'</p>'
+	 }
+	 
+	 var normalInfo = "<p>Please select an option to the left";
+	 var requestInfo ="<h3>Requests</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu blandit quam. Integer congue dictum arcu, in blandit dui bibendum a. Morbi quis pulvinar lorem. Aliquam erat volutpat. Pellentesque elementum iaculis purus, nec venenatis nunc auctor luctus. Quisque rutrum pharetra ligula sit amet blandit. Fusce volutpat tempus condimentum. Ut hendrerit placerat lectus, sit amet aliquam quam tincidunt blandit.</p>"
+	 
+	 var noSelected = 0;
+	 
+	 $(document).ready(function() {
+		//if($('#requestdiv ul').css('display')=='none'){
+			//$('#requestdiv').click(function() {
+				
+			//})
+		//}
+		//else{
+			
+		//}
+		$('.level1').mouseenter(function(){
+			$(this).find('ul:first').fadeIn('fast');
+		})
+		
+		$('.level1').mouseleave(function(){
+			$(this).find('ul:first').fadeOut('fast');
+		})
+		
+		$('#requestdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#requestsmenu').slideDown();
+			})
+		
+		$('#requestdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#requestsmenu').slideUp();
+			})
+			
+		$('.tabletwo tr').click(function() {
+				if(this.childNodes[1].childNodes[0].checked==true){
+					this.childNodes[1].childNodes[0].checked=false
+					if(this.className=="dk"){
+						this.style.background="#e9e9e9";
+					}
+					else{
+						this.style.background="white";
+					}
+				}
+				else{
+					this.childNodes[1].childNodes[0].checked=true
+					this.style.background="#43bd52"
+				}
+			})
+			
+		$("a#showroomdets").click(function(){  
+			 $("#lightbox, #lightbox-panel").fadeIn(300);  
+			 })  
+			 $(".exitbtn").click(function(){  
+			 $("#lightbox, #lightbox-panel").fadeOut(300);  
+			 })  
+		});
+	
+	$
+	</script>
+</head>
+<body>
+		
+  <div id="lightbox"> </div><!-- /lightbox -->  
+				<div id="lightbox-panel">  
+				<a class="exitbtn"><img src="exit.png" /></a>
+				 <img src="roomdets.png" /></div>
+				
+				
+<div id="supersize">        
+		
+	</div>
+	<div id="container">
+		<div id="content">
+		<div id="banner">
+			<img id="logo" src="logo.png" />
+			
+		</div>
+		<div id="titlesec">
+		
+			<img class="title" src="modulestitle.png" />
+		
+			<ul id="navbar">
+				<li class="level1"><a href="mainmenu.html">Home</a></li>
+				<li class="level1">Requests
+					<ul class="level2">
+						<li><a href="submitRequest.html">Make A New Request</a></li>
+						<li><a href="requestlist.html">View/Edit Requests</a></li>
+						<li><a href="archivedrequests.html">View Archived Requests</a></li>
+					</ul>
+				</li>
+				<li class="level1">Rooms
+					<ul class="level2">
+						<li><a href="roomlist.html">View/Search Rooms</a></li>
+					</ul>
+				</li>
+					
+				<li class="level1">Modules
+					<ul class="level2">
+						<li><a href="modulelist.html">View/Search Modules</a></li>
+					</ul>
+				</li>
+					
+				<li class="level1"><a href="login.html">Logout</a></li>
+			</ul>
+		</div>
+		<div id="propercontent"/>
+		<p class="breadcrumb">Home >> Modules >> View Module List</p>
+			<div id="requestlistbox">
+				<ul class="requestbtns">
+					<li><input type="text" /></li>
+					<li><img src="searchbtn.png" /></li>
+					<li>Sort By</li>
+					<li><select><option>Room Name</option><option>Building</option><option>Module Code</option></select></li>
+				</ul>
+				<table class="arch-tableone">
+      						<thead>
+							<tr>
+							  <th scope="col"></th>
+							  <th scope="col">Room Name</th> 
+
+							  <th scope="col">Module Name</th> 
+
+							  <th scope="col">Module Code</th> 
+
+							  <th scope="col">Location</th> 
+							  <th scope="col">Building</th> 
+							  <th scope="col">Times</th> 
+							</tr>
+
+						  </thead>
+
+					<tbody>
+
+					<tr><td colspan="7">
+
+					<div class="innerb">
+						  
+						  <table class="norm-tabletwo">
+
+						  <tr class="dk">
+							
+							<td><a href="#" id="showroomdets">CO123</a></td>
+							<td>James France</td>
+							<td>11CA7GH</td>
+							<td>2 Hours</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+						  
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+					<tr class="dk">
+					
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+						  
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+
+						  </tr>
+						</table>
+
+			</div>
+				
+		</div>
+	</div>
+	</div>
+	</div>
+</body>
+
+</html>
+
+
+

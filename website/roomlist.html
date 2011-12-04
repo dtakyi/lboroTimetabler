@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript" charset="utf-8"></script>
+	<title>Crikesh Clothing</title>
+	<link rel="stylesheet" type="text/css" href="type.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" type="text/css" href="formatting.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>	
+	<script type="text/javascript" src="http://growmedia.ca/_scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="resize.js"></script>
+	<script>
+	 function getBuildingData(){
+		document.getElementById("whatbuilding").innerHTML ='<p>Below are the currently booked rooms for - '+document.getElementById("building").options[document.getElementById("building").selectedIndex].text+'</p>'
+	 }
+	 
+	 var normalInfo = "<p>Please select an option to the left";
+	 var requestInfo ="<h3>Requests</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu blandit quam. Integer congue dictum arcu, in blandit dui bibendum a. Morbi quis pulvinar lorem. Aliquam erat volutpat. Pellentesque elementum iaculis purus, nec venenatis nunc auctor luctus. Quisque rutrum pharetra ligula sit amet blandit. Fusce volutpat tempus condimentum. Ut hendrerit placerat lectus, sit amet aliquam quam tincidunt blandit.</p>"
+	 
+	 $(document).ready(function() {
+		//if($('#requestdiv ul').css('display')=='none'){
+			//$('#requestdiv').click(function() {
+				
+			//})
+		//}
+		//else{
+			
+		//}
+		
+		$('#requestsdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#requestsmenu').slideDown();
+			})
+		
+		$('#requestsdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#requestsmenu').slideUp();
+			})
+			
+		$('#roomsdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#roomsmenu').slideDown();
+			})
+		
+		$('#roomsdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#roomsmenu').slideUp();
+			})
+			
+		$('#modulesdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#modulesmenu').slideDown();
+			})
+		
+		$('#modulesdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#modulesmenu').slideUp();
+			})
+			
+		$('#usersdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#usersmenu').slideDown();
+			})
+		
+		$('#usersdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#usersmenu').slideUp();
+			})
+		
+		$('.level1').mouseenter(function(){
+			$(this).find('ul:first').fadeIn('fast');
+		})
+		
+		$('.level1').mouseleave(function(){
+			$(this).find('ul:first').fadeOut('fast');
+		})
+			})
+	</script>
+</head>
+<body>
+<div id="supersize">        
+		
+	</div>
+	<div id="container">
+		<div id="content">
+		<div id="banner">
+			<img id="logo" src="logo.png" />
+			
+		</div>
+		<div id="titlesec">
+		
+			<img class="title" src="roomstitle.png" />
+		
+			<ul id="navbar">
+				<li class="level1"><a href="mainmenu.html">Home</a></li>
+				<li class="level1">Requests
+					<ul class="level2">
+						<li><a href="submitRequest.html">Make A New Request</a></li>
+						<li><a href="requestlist.html">View/Edit Requests</a></li>
+						<li><a href="archivedrequests.html">View Archived Requests</a></li>
+					</ul>
+				</li>
+				<li class="level1">Rooms
+					<ul class="level2">
+						<li><a href="roomlist.html">View/Search Rooms</a></li>
+					</ul>
+				</li>
+					
+				<li class="level1">Modules
+					<ul class="level2">
+						<li><a href="modulelist.html">View/Search Modules</a></li>
+					</ul>
+				</li>
+					
+				<li class="level1"><a href="login.html">Logout</a></li>
+			</ul>
+		</div>
+		<div id="propercontent"/>
+		<p class="breadcrumb">Home >> Rooms >> View Rooms</p>
+			<div id="roomfilter">
+				<h3 class="filtertitle">
+					Room Filter
+				</h3>
+				<form>
+					<h4>
+						Keywords:
+					</h4>
+					<input type="text" name="keywords" id="keywords" />
+					<h4>
+						Location:
+					</h4>
+						<select name="location">
+							<option value="0" selected>(please select:)</option>
+							<option value="1">Central Park</option>
+							<option value="2">East Park</option>
+							<option value="3">West Park</option>
+							<option value="other">other, please specify:</option>
+							<img src="help.png" class="helpbtn" />
+						</select>
+					<h4>
+						Capacity:
+					</h4>
+					<select name="capacity">
+							<option value="0" selected>(please select:)</option>
+							<option value="1">Under 20</option>
+							<option value="2">between 20 and 40</option>
+							<option value="3">Over 40</option>
+						</select>
+					<h4>
+						Facilities:
+					</h4>
+					<input type="checkbox" name="facilities" value="Physics Labs" />
+						<input type="checkbox" name="facilities" value="Overhead Projector" />
+				</form>
+				</div>
+			</div>
+			<div id="roomsfunctions">
+			<div id="requestlistbox">
+							
+				
+				<div id="pendingrequests">
+					<h2 id="pendingrequesthead">Room List</h2>
+					
+					<ul class="requestbtns">
+						<li class="searchbox"><input type="text" /></li>
+						<li><img src="searchbtn.png" /></li>
+					</ul>
+					
+					
+					<table class="arch-tableone">
+						<thead>
+							<tr>
+							  <th scope="col"></th>
+							  <th scope="col">Module Code</th>
+							  <th scope="col">Module Name</th> 
+
+							  <th scope="col">Day</th> 
+
+							  <th scope="col">Time</th> 
+
+							  <th scope="col">Duration</th> 
+							  <th scope="col">Room</th> 
+							  <th scope="col">Location</th> 
+							  <th scope="col">Building</th> 
+							  <th scope="col">Weeks</th> 
+							</tr>
+
+						  </thead>
+
+					<tbody>
+
+					<tr><td colspan="10">
+
+					<div class="innerb">
+						  
+						  <table class="norm-tabletwo">
+
+						  <tr class="dk">
+							<td><input type="checkbox" name="booking1"/></td>
+							<td><a href="#" id="showroomdets">CO123</a></td>
+							<td>James France</td>
+							<td>11CA7GH</td>
+							<td>2 Hours</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+						  <td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+					<tr class="dk">
+					<td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+						  <td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							<td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							<td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							<td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						  <tr>
+							<td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr><tr class="dk">
+							<td><input type="checkbox" name="booking1"/></td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+							<td>----------</td>
+						  </tr>
+						</table>
+								</div>
+						</table>
+				</div>	
+				
+		</div>
+		</div>
+	</div>
+	
+	</div>
+	
+</body>
+
+</html>
+
+
+

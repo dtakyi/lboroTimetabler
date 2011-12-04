@@ -1,0 +1,5 @@
+#container { background-image:url('middlebg.png'); background-position: center top; background-repeat: repeat-y; width: 1000px; margin-left: auto; margin-right: auto;}
+#content { background-image:url('stripbg.png'); background-position: center top; background-repeat: repeat-x; width: 968px; margin-left: auto; margin-right: auto;}
+
+aFTER REQUEST IS MADE, SUCCESS POINTER W
+ILL SHOW AND FORM WILL BE RESETTED TO ALLOW FOR ANOTHER TO BE ADDED

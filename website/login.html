@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+	<title>Loughborough University - Timetabler</title>
+	<link rel="stylesheet" type="text/css" href="type.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" type="text/css" href="formatting.css" />
+	<script type="text/javascript" src="http://growmedia.ca/_scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="resize.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#loginbutton").click(function(){  
+				if(document.getElementById('username').value=="admin"){
+					window.location='adminmainmenu.html'
+				}
+				else if(document.getElementById('username').value=="timetabler"){
+					window.location='mainmenu.html'
+				}
+				else{
+					alert('You are not a relevant user SARRRRY!!!')
+				}
+			})
+		})
+	</script>
+
+</head>
+<body>
+	<div id="supersize">        
+		<img src="bg.png" />
+	</div>
+	<div id="container2">
+		<div id="content">
+			<img id="logo" src="logo.png" />
+			<div id="loginbox">
+				<p>
+				</p>
+				<p>
+					Welcome to the Loughborough Timetabling system, please enter your details to login
+				</p>
+				
+				<form>
+				<div id="logindets">
+					<table>
+						<tr>
+							<td>
+								 <p>
+									Username:
+								 </p>
+							 </td>
+							<td>
+								<input type="text" name="username" id="username" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								 <p>
+									Password:
+								 </p>
+							</td>
+							<td>
+								<input id="password" type="text" name="password" />
+							</td>
+						</tr>
+					</table>
+				 </div>
+				 <img id="loginbutton" src="loginbtn.png" />
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+</body>
+
+</html>
+
+
+

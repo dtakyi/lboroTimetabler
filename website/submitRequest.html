@@ -1,0 +1,706 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript" charset="utf-8"></script>
+	<title>Loughborough University - Timetabler</title>
+	<link rel="stylesheet" type="text/css" href="type.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" type="text/css" href="formatting.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>	
+	<script type="text/javascript" language="javascript" src="js/hoverIntent.js"></script>
+	<script type="text/javascript" language="javascript" src="js/jquery.dropdown.js"></script>
+	<script>
+	 var oldDuration = 1;
+	 var noOfCells = 0;
+	 
+	 function moduleNameGenR8(selected){
+		if(selected==0){
+			document.getElementById('modulenamebox').innerHTML = 'Please select a module code above';
+		}
+		if(selected==1){
+			document.getElementById('modulenamebox').innerHTML = 'WebGL Programming'; 
+		}
+		if(selected==2){
+			document.getElementById('modulenamebox').innerHTML = 'Requirements Engineering'; 
+		}
+		if(selected==3){
+			document.getElementById('modulenamebox').innerHTML = 'Operating Systems, Networks and the Internet 2';
+		}
+		if(selected==4){
+			document.getElementById('modulenamebox').innerHTML = 'Legal and Professional Issues in Computing'; 
+		}
+	}
+		
+	function buildingGenR8(selected){
+		if(selected==0){
+			document.getElementById('selectbuilding').innerHTML = '<option>crazyyyyy</option><option>crazyyyyy</option>'
+		}
+		if(selected==1){
+			document.getElementById('selectbuilding').innerHTML = '<option>1</option><option>crazyyyyy</option>'
+		}
+		if(selected==2){
+			document.getElementById('selectbuilding').innerHTML = '<option>12</option><option>crazyyyyy</option>'
+		}
+		if(selected==3){
+			document.getElementById('selectbuilding').innerHTML = 'Operating Systems, Networks and the Internet 2';
+		}
+		if(selected==4){
+			document.getElementById('selectbuilding').innerHTML = 'Legal and Professional Issues in Computing'; 
+		}
+	}
+	
+	function roomGenR8(selected){
+		if(selected==0){
+			document.getElementById('selectroom').innerHTML = '<option>crazyyyyy</option><option>crazyyyyy</option>'
+		}
+		if(selected==1){
+			document.getElementById('selectroom').innerHTML = '<option>11 Holywell Drive [AA]</option><option>Ann Packer [JJ]</option><option>Bridgeman Centre [XX]</option>'
+		}
+		if(selected==2){
+			document.getElementById('selectroom').innerHTML = '<option>12</option><option>crazyyyyy</option>'
+		}
+		if(selected==3){
+			document.getElementById('selectroom').innerHTML = 'Operating Systems, Networks and the Internet 2';
+		}
+		if(selected==4){
+			document.getElementById('selectroom').innerHTML = 'Legal and Professional Issues in Computing'; 
+		}
+	}
+		/*
+			switch(selected){
+				case 0:
+					document.getElementById('modulename').value = 'Please select a module code above'; 
+				  break;
+				case 1:
+					alert('hello');
+				  document.getElementById('modulename').value = 'WebGL Programming'; 
+				  break;
+				case 2:
+				  document.getElementById('modulename').value = 'Requirements Engineering'; 
+				  break;
+				case 3:
+				  document.getElementById('modulename').value = 'Operating Systems, Networks and the Internet 2'; 
+				  break;
+				case 4:
+				  document.getElementById('modulename').value = 'Legal and Professional Issues in Computing'; 
+				  break;
+			}
+		*/
+	 
+	 function moduleSelector(){
+		//if(document.getElementbyId())
+	 }
+	 
+	 function getBuildingData(){
+		document.getElementById("whatbuilding").innerHTML ='<p>Below are the currently booked rooms for - '+document.getElementById("building").options[document.getElementById("building").selectedIndex].text+'</p>'
+	 }
+	 
+	 function showDuration(){
+		$("#lightbox, #lightbox-panel").fadeIn(300);  
+			 $(".exitbtn").click(function(){  
+				$("#lightbox, #lightbox-panel").fadeOut(300); 
+			})
+	 }
+	 
+	 function newRequestBox(){
+		$('.tabletwo td').not('.taken').empty();
+			if(this.className=="taken"){
+				alert('Cannot book this space, it is taken');
+			}
+			else{
+				this.innerHTML='<div class="requestbox"><p>Computer Science - A - 110C7A</p><a id="changeduration" onclick="showDuration()">Change Duration</a></div>';
+			}
+	}
+	 
+	 function changeDuration(duration){
+		$('.tabletwo td').not('.taken').attr('colspan', 1);
+		
+		$('.requestbox').css('width', '85px');
+		var barWidth = 85;
+		var newWidth = duration*barWidth;
+		newWidth+=(3*duration);
+		//$('.tabletwo td').css('display', 'table-cell');
+		if(oldDuration>duration){
+			noOfCells = oldDuration-duration;
+			for(var i=0; i<noOfCells; i++){
+				$('.requestbox').parent().parent().append('<td onClick="newRequestBox()"></td>');
+			}
+		}
+		else{
+			for(var i=0; i<duration-1; i++){
+				$('.requestbox').parent().next().remove();
+			}
+			$('.requestbox').parent().attr('colspan', duration);
+			$('.requestbox').css('width', newWidth+'px');
+		}
+		oldDuration=duration;		
+		$("#lightbox, #lightbox-panel").fadeOut(300); 
+	 }
+	 
+	 $(document).ready(function() {
+		
+		$('#moduleroom').click(function(){
+			$('.largeformsec').fadeOut('fast');
+			$('.smallformsec').fadeIn('fast');
+			$('.thinformsec').fadeIn('fast');
+			$('#moduleroom').fadeOut('fast');
+			$('#booktime').fadeIn('fast');
+			
+		})
+		
+		$('#booktime').click(function(){
+			$('.smallformsec').fadeOut('fast');
+			$('.thinformsec').fadeOut('fast');
+			$('.largeformsec').fadeIn('fast');
+			$('#booktime').fadeOut('fast');
+			$('#moduleroom').fadeIn('fast');
+		})
+		
+		$('.helpbtn').mouseenter(function(){
+			$(this).prev().fadeIn()
+		})
+		$('.helpbtn').mouseleave(function(){
+			$(this).prev().fadeOut()
+		})
+		
+		$('.level1').mouseenter(function(){
+			$(this).find('ul:first').fadeIn('fast');
+		})
+		
+		$('.level1').mouseleave(function(){
+			$(this).find('ul:first').fadeOut('fast');
+		})
+		
+		$('.tabletwo td').click(function(){
+			$('.tabletwo td').not('.taken').empty();
+			if(this.className=="taken"){
+				alert('Cannot book this space, it is taken');
+			}
+			else{
+				this.innerHTML='<div class="requestbox"><p>Computer Science - A - 110C7A</p><a id="changeduration" onclick="showDuration()"><img src="changedurationbtn.png" /></a></div>';
+			}
+		})
+		
+		//$("a#changeduration").click(function(){  
+			// $("#lightbox, #lightbox-panel").fadeIn(300);  
+			 //})  
+			 //$(".exitbtn").click(function(){  
+			 //$("#lightbox, #lightbox-panel").fadeOut(300);  
+		//})  
+			
+	})
+	
+	
+	
+	</script>
+</head>
+<body>
+<div id="lightbox"> </div><!-- /lightbox -->  
+				<div id="lightbox-panel">  
+					<a class="exitbtn"><img src="exit.png" /></a>
+				 <div id="durationbox" class="textbox floatbox">
+				 
+					<table>
+						<tr>
+							<td>
+								<p class="label"> 
+									Duration
+								</p>
+							</td>
+							<td>
+								<select id="durationselect" name="duration" onChange="changeDuration(this.value)">
+									<option value="1" selected>1 Hour</option>
+									<option value="2">2 Hours</option>
+									<option value="3">3 Hours</option>
+									<option value="4">4 Hours</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+				 </div>
+	<div id="container">
+		<div id="content">
+		<div id="banner">
+			<img id="logo" src="logo.png" />
+			
+		</div>
+		<div id="titlesec">
+		
+			<img class="bookingtitle" src="roomstitle.png" />
+		
+			<ul id="navbar">
+				<li class="level1"><a href="mainmenu.html">Home</a></li>
+				<li class="level1">Requests
+					<ul class="level2">
+						<li><a href="submitRequest.html">Make A New Request</a></li>
+						<li><a href="requestlist.html">View/Edit Requests</a></li>
+						<li><a href="archivedrequests.html">View Archived Requests</a></li>
+					</ul>
+				</li>
+				<li class="level1">Rooms
+					<ul class="level2">
+						<li><a href="roomlist.html">View/Search Rooms</a></li>
+					</ul>
+				</li>
+					
+				<li class="level1">Modules
+					<ul class="level2">
+						<li><a href="modulelist.html">View/Search Modules</a></li>
+					</ul>
+				</li>
+					
+				<li class="level1"><a href="login.html">Logout</a></li>
+			</ul>
+		</div>
+		<div id="formholder">
+			<form id="bookform">
+				<fieldset class="smallformsec">
+					<h2>
+						Module Information
+					</h2>
+					<div class="textbox">
+					<table>
+							<tr>
+								<td>
+									<p class="label">Module Part:</p>
+								</td>
+								<td>
+									<select id="modulepart" name="modulepart">
+										<option value="0" selected>Please Select A Part</option>
+										<option value="1">A</option>
+										<option value="2">B</option>
+										<option value="3">C</option>
+										<option value="4">D</option>
+									</select>
+								</td>
+								<td>
+								<div class="helpdiv">
+								<div class="helpbubble">
+									</div>
+										<img src="help.png" class="helpbtn" />
+								</div>
+								</td>
+							</tr>
+						</table>	
+					</div>
+					<div class="textbox">
+						<table>
+						<tr>
+							<td>
+								<p class="label">Module Code:</p>
+							</td>
+							<td>
+								<select id="modulecode" name="modulecode" onChange="moduleNameGenR8(this.value)">
+										<option value="0" selected>Please Select A Code</option>
+										<option value="1">1107AHC</option>
+										<option value="2">11COB101</option>
+										<option value="3">11COB232</option>
+										<option value="4">11ISB403</option>
+										<img src="help.png" class="helpbtn" />
+									</select>
+							</td>
+							<td>
+								<div class="helpdiv">
+									<div class="helpbubble">
+									</div>
+									<img src="help.png" class="helpbtn" />
+								</div>
+							</td>
+						</tr>
+					</table>
+					</div>
+					<div class="textbox">
+					<table>
+						<tr>
+							<td>
+								<p class="label">Module Name:</p>
+							</td>
+							<td>
+								<div id="modulenamebox">
+								</div>
+							</td>
+							<td>
+							<div class="helpdiv">
+								<div class="helpbubble">
+								</div>
+								<img src="help.png" class="helpbtn" />
+							</div>
+							</td>
+						</tr>
+					</table>
+					</div>
+				</fieldset>
+				<fieldset class="smallformsec">
+					<h2>
+						Room Information
+					</h2>
+					<div>
+					<table>
+							<tr>
+								<td>
+									<p class="label">
+										Desired Location:
+									</p>
+								</td>
+								<td>
+									<select onChange="buildingGenR8(this.value)" name="location">
+										<option value="0" selected>(please select:)</option>
+										<option value="1">Central Park</option>
+										<option value="2">East Park</option>
+										<option value="3">West Park</option>
+									</select>
+								</td>
+								<td>
+								<div class="helpdiv">
+								<div class="helpbubble">
+									</div>
+									<img src="help.png" class="helpbtn" />
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p class="label">
+										Desired Building:
+									</p>
+								</td>
+								<td>
+									<select name="building" id="selectbuilding" onChange="roomGenR8(this.value)">
+										<option value="0" selected>(please select:)</option>
+										<option value="1">James France</option>
+										<option value="2">EHB</option>
+										<option value="3">West Park</option>
+										<option value="other">other, please specify:</option>
+									</select>
+								</td>
+								<td>
+								<div class="helpdiv">
+								<div class="helpbubble">
+									</div>
+									<img src="help.png" class="helpbtn" />
+								</div>
+								</td>
+							</tr>
+						
+							<tr>
+								<td>
+									<p class="label">
+										Desired Capacity:
+									</p>
+								</td>
+								<td>
+									<select name="capacity">
+										<option value="0" selected>(please select:)</option>
+										<option value="1">Under 20</option>
+										<option value="2">between 20 and 40</option>
+										<option value="3">Over 40</option>
+									</select>
+								</td>
+								<td>
+								<div class="helpdiv">
+								<div class="helpbubble">
+									</div>
+									<img src="help.png" class="helpbtn" />
+								</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>
+									<p class="label"> 
+										Desired Room
+									</p>
+								</td>
+								<td>
+									<select id="selectroom" name="room">
+										<option value="0" selected>(please select:)</option>
+									</select>
+								</td>
+								<td>
+								<div class="helpdiv">
+								<div class="helpbubble">
+									</div>
+									<img src="help.png" class="helpbtn" />
+								</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</fieldset>
+			<table id="roomstable">
+			<tr>
+				<td>
+				<fieldset class="thinformsec" id="roomfac">
+					<div>
+					<table>
+						<tr>
+							<td rowspan="2">
+								<p class="label">
+									Room Facilities:
+								</p>
+							</td>
+						</tr>
+							<tr>
+							
+								<td>
+									Overhead Projector<input class="checkbox" type="checkbox" name="facilities" value="Overhead Project" />
+								</td>
+								<td>
+									Digital Projector<input class="checkbox" type="checkbox" name="facilities" value="Digital Projector" />
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									Computer Station<input class="checkbox" type="checkbox" name="facilities" value="Computer Station" />
+								</td>
+								<td>
+									Blackboard<input class="checkbox" type="checkbox" name="facilities" value="Blackboard" />
+								</td>
+							</tr>
+						</table>
+					</div>
+				</fieldset>
+				</td>
+			<td>
+				<fieldset class="thinformsec" id="roomreq">
+					<div>
+					<table>
+						<tr>
+							<td rowspan="2">
+								<p class="label">
+									Room Facilities:
+								</p>
+							</td>
+						</tr>
+							<tr>
+							
+								<td>
+									Overhead Projector<input class="checkbox" type="checkbox" name="facilities" value="Overhead Project" />
+								</td>
+								<td>
+									Digital Projector<input class="checkbox" type="checkbox" name="facilities" value="Digital Projector" />
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									Computer Station<input class="checkbox" type="checkbox" name="facilities" value="Computer Station" />
+								</td>
+								<td>
+									Blackboard<input class="checkbox" type="checkbox" name="facilities" value="Blackboard" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<table id="booktimebtn">
+						<tr>
+							<td>
+							</td>
+							<td>
+							</td>
+							<td>
+							</td>
+							<td>
+							</td>
+							<td align="center">
+								<a href="#"><img id="booktime" src="booktime.png" /></a>
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+			</tr>
+			</table>
+				<fieldset class="largeformsec">
+					<h2>
+						Time Information
+					</h2>
+					<table id="weeks">
+						<tr>
+							<td>
+								Weeks:
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+									<option>10</option>
+									<option>11</option>
+								</select>
+							</td>
+							<td>
+								To
+							</td>
+							<td>
+								<select>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+									<option>10</option>
+									<option selected>11</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<p>
+						<span class="white">Please choose information about the requests you are hoping to make.</span>
+					</p>
+					
+					<div id="tableholder">
+						 <table class="tableone" summary="This table lists flights arriving at Bristol International Airport.">
+      <thead>
+
+        <tr>
+
+          <th class="time" scope="col"></th> 
+
+          <th class="time" scope="col">9:00</th> 
+
+          <th class="time" scope="col">10:00</th> 
+
+          <th class="time" scope="col">11:00</th> 
+
+          <th class="time" scope="col">12:00</th> 
+		  <th class="time" scope="col">13:00</th> 
+		  <th class="time" scope="col">14:00</th> 
+		  <th class="time" scope="col">15:00</th> 
+		  <th class="time" scope="col">16:00</th> 
+		  <th class="time" scope="col">17:00</th> 
+
+        </tr>
+
+      </thead>
+
+<tbody>
+
+<tr><td colspan="10">
+
+<div class="innerb">
+	  
+	  <table class="tabletwo">
+      <tr>
+        <th class="rowhead" scope="row">Monday</th>
+		<td class="taken" colspan="3">COMPUTER SCIENCE - A 11COA122</td>
+		<td class="taken" colspan="1">ECONOMICS - B 11COA122</td>
+		<td></td>
+		<td class="taken" colspan="1">ELCTRICAL ENG. - D 11COA122</td>
+		<td></td>
+		<td></td>
+		<td></td>
+      </tr>
+      <tr>
+		<th class="rowhead" scope="row">Tuesday</th>
+				<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+
+		
+	  </tr>
+
+	<tr>
+        <th class="rowhead" scope="row">Wednesday</th>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+      </tr>
+      <tr>
+		<th class="rowhead" scope="row">Thursday</th>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+
+		<td></td>
+
+	  </tr>
+	  <tr>
+        <th class="rowhead" scope="row">Friday</th>
+		<td class="taken" colspan="3">COMPUTER SCIENCE - A 11COA122</td>
+		<td class="taken" colspan="1">ECONOMICS - B 11COA122</td>
+		<td></td>
+		<td class="taken" colspan="1">ELCTRICAL ENG. - D 11COA122</td>
+		<td></td>
+		<td></td>
+		<td></td>
+
+      </tr>
+     
+
+</table>
+
+</div>
+
+</td></tr>
+
+</tbody>
+
+</table>
+<table id="timedata">
+						<tr>
+							<td>
+								<a href="#"><img id="moduleroom" src="moduleroom.png" /></a>
+							</td>
+						</tr>
+					</table>
+					<table id="subfunc">
+						<tr>
+							<td>
+								<select>
+									<option>Make New Request</option>
+									<option>Book New Module With Same Room</option>
+									<option>Book Same Module & Room at Different Time</option>
+									<option>Book Same module In a New Room</option>
+								</select>
+							</td>
+							<td>
+								<a href="#"><img src="submitbtn.png" /></a>
+							</td>
+						</tr>
+					</table>
+					</div>
+					
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>
+
+
+
