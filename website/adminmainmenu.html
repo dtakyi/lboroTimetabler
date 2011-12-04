@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-latest.js" type="text/javascript" charset="utf-8"></script>
+	<title>Crikesh Clothing</title>
+	<link rel="stylesheet" type="text/css" href="type.css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen, projection"/>
+	<link rel="stylesheet" type="text/css" href="formatting.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>	
+	<script type="text/javascript" src="http://growmedia.ca/_scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="resize.js"></script>
+	<script>
+	 function getBuildingData(){
+		document.getElementById("whatbuilding").innerHTML ='<p>Below are the currently booked rooms for - '+document.getElementById("building").options[document.getElementById("building").selectedIndex].text+'</p>'
+	 }
+	 
+	 var normalInfo = "<p>Please select an option to the left";
+	 var requestInfo ="<h3>Requests</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eu blandit quam. Integer congue dictum arcu, in blandit dui bibendum a. Morbi quis pulvinar lorem. Aliquam erat volutpat. Pellentesque elementum iaculis purus, nec venenatis nunc auctor luctus. Quisque rutrum pharetra ligula sit amet blandit. Fusce volutpat tempus condimentum. Ut hendrerit placerat lectus, sit amet aliquam quam tincidunt blandit.</p>"
+	 
+	 $(document).ready(function() {
+		//if($('#requestdiv ul').css('display')=='none'){
+			//$('#requestdiv').click(function() {
+				
+			//})
+		//}
+		//else{
+			
+		//}
+		
+		$('#requestsdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#requestsmenu').slideDown();
+			})
+		
+		$('#requestsdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#requestsmenu').slideUp();
+			})
+			
+		$('#roomsdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#roomsmenu').slideDown();
+			})
+		
+		$('#roomsdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#roomsmenu').slideUp();
+			})
+			
+		$('#modulesdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#modulesmenu').slideDown();
+			})
+		
+		$('#modulesdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#modulesmenu').slideUp();
+			})
+			
+		$('#usersdiv').mouseenter(function() {
+				$('#infobox').empty().append(requestInfo)
+				$('#usersmenu').slideDown();
+			})
+		
+		$('#usersdiv').mouseleave(function() {
+				$('#infobox').empty().append(normalInfo)
+				$('#usersmenu').slideUp();
+			})
+		
+		$('.level1').mouseenter(function(){
+			$(this).find('ul:first').fadeIn('fast');
+		})
+		
+		$('.level1').mouseleave(function(){
+			$(this).find('ul:first').fadeOut('fast');
+		})
+			})
+	</script>
+</head>
+<body>
+<div id="supersize">        
+		<img src="bg.jpg" />
+	</div>
+	<div id="container">
+		<div id="content">
+			<img id="logo" src="logo.png" />
+			<ul id="navbar">
+				<li class="level1"><a href="mainmenu.html">Home</a></li>
+				<li class="level1">Requests
+					<ul class="level2">
+						<li><a href="submitRequest.html">Make A New Request</a></li>
+						<li><a href="requestlist.html">View/Edit Requests</a></li>
+						<li><a href="archivedrequests.html">View Archived Requests</a></li>
+					</ul>
+				</li>
+				<li class="level1">Rooms
+					<ul class="level2">
+						<li>View Rooms</li>
+						<li></li>
+						<li>View Archived Requests</li>
+					</ul>
+				</li>
+					
+				<li class="level1">Modules
+					<ul class="level2">
+						<li>Make A New Request</li>
+						<li>View/Edit Requests</li>
+						<li>View Archived Requests</li>
+					</ul>
+				</li>
+					
+				<li class="level1">Logout</li>
+			</ul>
+			<div id="wholeselection">
+			<div id="infobox">
+				</div>
+				<div id="mainbtns">
+					<div id="requestsdiv">
+						<img src="requestsbtn.png" />
+						<ul id="requestsmenu">
+							<li>- <a href="adminrequests.html">View Current Requests</a></li>
+							<li>- <a href="adminarchivedrequests.html">View Archived Requests</a></li>
+							<li>- <a href="initiateround.html">Initiate Round</a></li>
+						</ul>
+					</div>
+					<div id="modulesdiv">
+						<img src="modulesbtn.png" />
+						<ul id="modulesmenu">
+							<li>- <a href="adddepartment.html">Add Department</a></li>
+							<li>- <a href="addmodule.html">Add Module</a></li>
+							<li>- <a href="modulelist.html">View/Edit Modules</a></li>
+						</ul>
+					</div>
+					<div id="roomsdiv">
+						<img src="roomsbtn.png" />
+						<ul id="roomsmenu">
+							<li>- <a href="addroom.html">Add Room</a></li>
+							<li>- <a href="roomlist.html">View/Edit Rooms</a></li>
+							<li>- <a href="addbuilding.html">Add Buildings</a></li>
+							<li>- <a href="buildinglist.html">View/Edit Buildings</a></li
+						</ul>
+					</div>
+					<div id="usersdiv">
+						<img src="usersbtn.png" />
+						<ul id="usersmenu">
+							<li>- <a href="adduser.html">Add New User</a></li>
+							<li>- <a href="userlist.html">View/Edit Timetablers</a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+				
+		</div>
+	</div>
+	
+</body>
+
+</html>
+
+
+
